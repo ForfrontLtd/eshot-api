@@ -8,7 +8,7 @@ using System.Text.Json;
 try
 {
     Console.ForegroundColor = ConsoleColor.White;
-    string? apiKey = "36F487FD-117F-47D6-859A-DA9A1C8B4DAD";
+    string? apiKey = null;
     while (apiKey == null)
     {
         Console.WriteLine("Please enter your API key and hit \"Enter\"");
@@ -18,7 +18,7 @@ try
     // pre-requisites:
     // 1. You can obtain your API key from "Accounts settings" page accessible from the settings icon, and then clicking on the "Integrations" tab
     // 2. The examples below assume you have setup a custom field called "MyCustomField"
-    EshotHttpClient client = new("https://rest.e-shot.developer", apiKey);
+    EshotHttpClient client = new("https://rest-api.e-shot.net", apiKey);
 
     /*
         Find information about the user making the api request
