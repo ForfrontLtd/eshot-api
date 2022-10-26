@@ -1349,7 +1349,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6a2f7e4d-a5dc-4a37-9c9f-50d0d357c10a",
+				"id": "f06a6f25-1563-4acd-96c7-9136a9cc8146",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1359,7 +1359,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "14aa2c23-8141-4a9a-9fa1-82910d3419a4",
+				"id": "7414cdf8-c2db-4118-b6b9-c9a6a22e5f42",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1369,20 +1369,10 @@
 	],
 	"variable": [
 		{
-			"id": "5f5ee992-7896-4f72-a788-3f160d60922e",
+			"id": "84377ff7-52fe-4673-aa93-783e5b7b1dd7",
 			"key": "subaccountId",
 			"value": "5",
 			"type": "string"
-		},
-		{
-			"id": "b3ad2ee6-743c-498b-b963-336b716280c0",
-			"key": "contactFieldMappingId",
-			"value": ""
-		},
-		{
-			"id": "35e732b3-9142-4cfe-bbc5-292fd4551b30",
-			"key": "sourceId",
-			"value": ""
 		}
 	]
 }
