@@ -29,7 +29,7 @@
 					}
 				}
 			],
-			"_postman_id": "202599fc-c206-4dcd-b301-6d195496b16f",
+			"id": "202599fc-c206-4dcd-b301-6d195496b16f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -94,7 +94,7 @@
 					}
 				}
 			],
-			"_postman_id": "32f4ae86-b8f6-4400-be69-ba1ba2d9e468",
+			"id": "32f4ae86-b8f6-4400-be69-ba1ba2d9e468",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -188,7 +188,7 @@
 					}
 				}
 			],
-			"_postman_id": "3e34b21e-6437-4a5f-80f6-935c4de7dc14",
+			"id": "3e34b21e-6437-4a5f-80f6-935c4de7dc14",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -209,10 +209,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"DisplayName\":\"MyCustomField\",\r\n    \"FieldLength\": 50,\r\n    \"DecimalPlaces\": null,\r\n    \"ContactFieldDataTypeID\": 6,\r\n    \"PicklistID\": null\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"DisplayName\":\"MyCustomField\",\r\n    \"FieldLength\": 50,\r\n    \"DecimalPlaces\": null,\r\n    \"ContactFieldDataTypeID\": 6,\r\n    \"PicklistID\": null\r\n}"
 				},
 				"url": "{{host}}/ContactFieldMappings/Create"
 			},
@@ -245,7 +242,7 @@
 					}
 				}
 			],
-			"_postman_id": "9b3ac551-d0cf-43d2-bee0-dde6c3cf892d",
+			"id": "9b3ac551-d0cf-43d2-bee0-dde6c3cf892d",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -316,7 +313,7 @@
 					}
 				}
 			],
-			"_postman_id": "9db728b6-93fc-4272-a766-b40b4a40e014",
+			"id": "9db728b6-93fc-4272-a766-b40b4a40e014",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -337,10 +334,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"ContactFieldMappingID\": {{contactFieldMappingId}}\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"ContactFieldMappingID\": {{contactFieldMappingId}}\r\n}"
 				},
 				"url": "{{host}}/SubaccountContactFieldMappings/Map"
 			},
@@ -373,7 +367,7 @@
 					}
 				}
 			],
-			"_postman_id": "97e120a6-d142-4273-b561-89f3ec5fe742",
+			"id": "97e120a6-d142-4273-b561-89f3ec5fe742",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -394,10 +388,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman\"\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman\"\r\n}"
 				},
 				"url": "{{host}}/Sources"
 			},
@@ -432,7 +423,7 @@
 					}
 				}
 			],
-			"_postman_id": "42575628-e680-4725-9f18-079e8210fe9a",
+			"id": "42575628-e680-4725-9f18-079e8210fe9a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -453,10 +444,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman (1)\",\r\n    \"IsFeaturedGroup\": true\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman (1)\",\r\n    \"IsFeaturedGroup\": true\r\n}"
 				},
 				"url": "{{host}}/Groups"
 			},
@@ -491,7 +479,7 @@
 					}
 				}
 			],
-			"_postman_id": "b37b7686-da42-41fc-abbd-a3e6ed67b552",
+			"id": "b37b7686-da42-41fc-abbd-a3e6ed67b552",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -512,10 +500,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman (2)\",\r\n    \"IsFeaturedGroup\": true\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman (2)\",\r\n    \"IsFeaturedGroup\": true\r\n}"
 				},
 				"url": "{{host}}/Groups"
 			},
@@ -547,7 +532,7 @@
 					}
 				}
 			],
-			"_postman_id": "24806c8a-8ee1-4c24-9736-d87929840729",
+			"id": "24806c8a-8ee1-4c24-9736-d87929840729",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -568,10 +553,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"SourceID\": {{sourceId}},\r\n    \"GroupIDs\": [{{group1Id}}],\r\n    \"Email\": \"postman.{{uniqueId}}@automatedtesting.forfront.net\",\r\n    \"Firstname\": \"Post\",\r\n    \"Lastname\": \"Man\",\r\n    \"CustomFields\": [\r\n        { \r\n            \"DisplayName\": \"{{customFieldDisplayName}}\", \r\n            \"FieldValue\": \"postman.{{uniqueId}}\"\r\n        }\r\n    ]\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"SourceID\": {{sourceId}},\r\n    \"GroupIDs\": [{{group1Id}}],\r\n    \"Email\": \"postman.{{uniqueId}}@automatedtesting.forfront.net\",\r\n    \"Firstname\": \"Post\",\r\n    \"Lastname\": \"Man\",\r\n    \"CustomFields\": [\r\n        { \r\n            \"DisplayName\": \"{{customFieldDisplayName}}\", \r\n            \"FieldValue\": \"postman.{{uniqueId}}\"\r\n        }\r\n    ]\r\n}"
 				},
 				"url": "{{host}}/Contacts"
 			},
@@ -604,7 +586,7 @@
 					}
 				}
 			],
-			"_postman_id": "4b4a979f-f282-4cda-a058-68a2a5adc973",
+			"id": "4b4a979f-f282-4cda-a058-68a2a5adc973",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -675,7 +657,7 @@
 					}
 				}
 			],
-			"_postman_id": "486884b3-80e9-429a-844f-cc4ff4919866",
+			"id": "486884b3-80e9-429a-844f-cc4ff4919866",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -696,10 +678,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"SourceID\": {{sourceId}},\r\n    \"GroupID\": {{group2Id}},\r\n    \"ImportActionType\": \"Repopulate\",\r\n    \"Name\": \"Postman\"\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"SourceID\": {{sourceId}},\r\n    \"GroupID\": {{group2Id}},\r\n    \"ImportActionType\": \"Repopulate\",\r\n    \"Name\": \"Postman\"\r\n}"
 				},
 				"url": "{{host}}/ContactImportTemplates"
 			},
@@ -733,7 +712,7 @@
 					}
 				}
 			],
-			"_postman_id": "474c4609-5549-4371-ad79-73271d176023",
+			"id": "474c4609-5549-4371-ad79-73271d176023",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -756,9 +735,6 @@
 					"mode": "file",
 					"file": {
 						"src": "data/eshot.import.example.csv"
-					},
-					"options": {
-						"file": {}
 					}
 				},
 				"url": "{{host}}/ContactImports/TemplatedUpload({{contactImportTemplateId}})"
@@ -807,7 +783,7 @@
 					}
 				}
 			],
-			"_postman_id": "ce4052d4-4631-47d1-a0d5-576227cb5568",
+			"id": "ce4052d4-4631-47d1-a0d5-576227cb5568",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -866,7 +842,7 @@
 					}
 				}
 			],
-			"_postman_id": "0164e482-8bb2-4abb-bfa8-76b03b09d527",
+			"id": "0164e482-8bb2-4abb-bfa8-76b03b09d527",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -887,10 +863,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"CustomFields\": [\r\n        { \r\n            \"DisplayName\": \"{{customFieldDisplayName}}\", \r\n            \"FieldValue\": \"postman test\", \r\n            \"TextOperation\": \"ReplaceContent\"\r\n        }\r\n    ]\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"CustomFields\": [\r\n        { \r\n            \"DisplayName\": \"{{customFieldDisplayName}}\", \r\n            \"FieldValue\": \"postman test\", \r\n            \"TextOperation\": \"ReplaceContent\"\r\n        }\r\n    ]\r\n}"
 				},
 				"url": "{{host}}/Groups({{group1Id}})/Contacts/Update"
 			},
@@ -928,7 +901,7 @@
 					}
 				}
 			],
-			"_postman_id": "b03e81e8-62e4-4c6a-a284-893c0f827601",
+			"id": "b03e81e8-62e4-4c6a-a284-893c0f827601",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -997,7 +970,7 @@
 					}
 				}
 			],
-			"_postman_id": "55b9c45e-fe95-462e-b141-23fcfe96bdc7",
+			"id": "55b9c45e-fe95-462e-b141-23fcfe96bdc7",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1068,7 +1041,7 @@
 					}
 				}
 			],
-			"_postman_id": "6346e64c-ca65-4437-8963-273aa487a609",
+			"id": "6346e64c-ca65-4437-8963-273aa487a609",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1127,7 +1100,7 @@
 					}
 				}
 			],
-			"_postman_id": "ede5c9c6-9e6a-4b92-9553-b852d65629c4",
+			"id": "ede5c9c6-9e6a-4b92-9553-b852d65629c4",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1148,10 +1121,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"@odata.id\":\"{{host}}/Groups({{group2Id}})\"\r\n}",
-					"options": {
-						"raw": {}
-					}
+					"raw": "{\r\n    \"@odata.id\":\"{{host}}/Groups({{group2Id}})\"\r\n}"
 				},
 				"url": "{{host}}/Contacts({{contactId}})/Groups/$ref"
 			},
@@ -1184,7 +1154,7 @@
 					}
 				}
 			],
-			"_postman_id": "93d246e6-9201-471a-93f1-bd9f733eb38b",
+			"id": "93d246e6-9201-471a-93f1-bd9f733eb38b",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1243,7 +1213,7 @@
 					}
 				}
 			],
-			"_postman_id": "f1cc6687-76ba-4cbd-9a6d-24515a7a0721",
+			"id": "f1cc6687-76ba-4cbd-9a6d-24515a7a0721",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1264,10 +1234,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {}
-					}
+					"raw": ""
 				},
 				"url": {
 					"raw": "{{host}}/Contacts({{contactId}})/Groups/$ref?$id={{group2Id}}",
@@ -1328,7 +1295,7 @@
 					}
 				}
 			],
-			"_postman_id": "a8b3bf7b-5b1e-41f2-a00b-139f1e74e267",
+			"id": "a8b3bf7b-5b1e-41f2-a00b-139f1e74e267",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1371,11 +1338,18 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"value": "Token {{ApiKey}}",
+			"key": "Authorization"
+		}
+	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f98c14a3-ab8d-4583-a408-198f64967bc2",
+				"id": "6a2f7e4d-a5dc-4a37-9c9f-50d0d357c10a",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1385,7 +1359,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f8e97dc3-0eeb-4b23-8aa3-8f875af5ded5",
+				"id": "14aa2c23-8141-4a9a-9fa1-82910d3419a4",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1395,22 +1369,20 @@
 	],
 	"variable": [
 		{
-			"id": "cf429a06-83c7-46b8-8733-36f6edf45ffa",
+			"id": "5f5ee992-7896-4f72-a788-3f160d60922e",
 			"key": "subaccountId",
 			"value": "5",
 			"type": "string"
 		},
 		{
-			"id": "bfb7c242-86b8-482f-96d5-a6821306495f",
+			"id": "b3ad2ee6-743c-498b-b963-336b716280c0",
 			"key": "contactFieldMappingId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "6e2108f9-9f52-4cc3-bf47-001239e09e9a",
+			"id": "35e732b3-9142-4cfe-bbc5-292fd4551b30",
 			"key": "sourceId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		}
 	]
 }
