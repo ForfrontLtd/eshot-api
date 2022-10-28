@@ -668,7 +668,7 @@
 				"body": {
 					"mode": "file",
 					"file": {
-						"src": "{{contactImportFilePath}}"
+						"src": "/C:/temp/Postman/eshot.import.example.csv"
 					}
 				},
 				"url": "{{host}}/ContactImports/TemplatedUpload({{contactImportTemplateId}})"
@@ -696,7 +696,7 @@
 							"\r",
 							"pm.test(\"Contact import retry limit check\", function () {\r",
 							"    var counter = pm.collectionVariables.get(\"importStatusRetryCheckCount\");\r",
-							"    pm.expect(counter < 5).to.be.true;\r",
+							"    pm.expect(counter < 5, \"Maximum retries reached\").to.be.true;\r",
 							"});\r",
 							"\r",
 							"const contactImports = pm.response.json().value;\r",
@@ -1256,13 +1256,13 @@
 	],
 	"variable": [
 		{
-			"id": "a95dcef3-11cb-4e7e-a90a-d82b8b3e1a56",
+			"id": "73de6b75-49e4-466e-b42c-c5387d739866",
 			"key": "subaccountId",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "b689d84d-a059-418c-8d71-821ff8ffae2f",
+			"id": "e5732f22-6734-49d5-938d-df6576fa3ab5",
 			"key": "customField",
 			"value": "",
 			"type": "string"
