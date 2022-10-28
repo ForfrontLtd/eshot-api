@@ -524,7 +524,9 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Found contact has expected custom field value\", function() {\r",
-							"    const customField = pm.collectionVariables.get(\"customField\");\r",
+							"    let customField = pm.collectionVariables.get(\"customField\");\r",
+							"    if (customField == undefined || customField == null)\r",
+							"        customField = pm.iterationData.get(\"customField\");\r",
 							"    console.log(customField);\r",
 							"    const uniqueId = pm.collectionVariables.get(\"uniqueId\");\r",
 							"    const contact = pm.response.json()[0];\r",
@@ -1256,13 +1258,13 @@
 	],
 	"variable": [
 		{
-			"id": "0c0d88bc-aaea-44bd-9a9f-0b4bb85e7990",
+			"id": "6cbd642a-ab58-4398-9a87-63e700865fb8",
 			"key": "subaccountId",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "fbd6fc4e-226f-4d12-b04e-7cc4cb94ba25",
+			"id": "90cf4308-5f3e-4054-ac2d-8b0f8e47e1b5",
 			"key": "customField",
 			"value": "",
 			"type": "string"
