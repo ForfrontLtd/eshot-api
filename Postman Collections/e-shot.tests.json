@@ -668,7 +668,7 @@
 				"body": {
 					"mode": "file",
 					"file": {
-						"src": "/C:/temp/Postman/eshot.import.example.csv"
+						"src": "{{contactImportFilePath}}"
 					}
 				},
 				"url": "{{host}}/ContactImports/TemplatedUpload({{contactImportTemplateId}})"

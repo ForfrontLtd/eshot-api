@@ -1,6 +1,7 @@
 [
   {
     "subaccountId":5,
-    "customField":"PostmanCustomField"
+    "customField":"PostmanCustomField",
+    "contactImportFilePath":"eshot.import.example.csv"
   }
 ]
