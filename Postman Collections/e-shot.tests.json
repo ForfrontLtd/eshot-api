@@ -756,7 +756,7 @@
 			"response": []
 		},
 		{
-			"name": "Update all contacts in group \"Postman (1)\" to have \"MyCustomField\" value of \"postman test\"",
+			"name": "Update all contacts in group \"Postman (1)\" to have the custom field value of \"postman test\"",
 			"event": [
 				{
 					"listen": "test",
@@ -1256,13 +1256,13 @@
 	],
 	"variable": [
 		{
-			"id": "a1c6c2da-a6b1-4dde-97bf-ee3430f7b2ba",
+			"id": "77539332-47e2-4771-a8ae-61a7e11d258a",
 			"key": "subaccountId",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "7c80b885-83a4-4366-ad7e-2dbade3b18e5",
+			"id": "8895e055-ad26-403c-bd5c-60eeb2b5a20e",
 			"key": "customField",
 			"value": "",
 			"type": "string"
