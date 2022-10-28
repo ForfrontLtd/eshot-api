@@ -667,7 +667,7 @@
 				"body": {
 					"mode": "file",
 					"file": {
-						"src": "data/eshot.import.example.csv"
+						"src": "/C:/temp/Postman/eshot.import.example.csv"
 					}
 				},
 				"url": "{{host}}/ContactImports/TemplatedUpload({{contactImportTemplateId}})"
@@ -1255,13 +1255,13 @@
 	],
 	"variable": [
 		{
-			"id": "13977b18-8ab9-4cf0-bc76-2edb7e338824",
+			"id": "e626b1ff-b52d-46ef-977d-4d4eebb10d34",
 			"key": "subaccountId",
 			"value": "5",
 			"type": "string"
 		},
 		{
-			"id": "f0223475-0cfc-4aea-8a01-2ba2fa46a7e6",
+			"id": "e3a9d240-ed1b-449d-8c21-904125d238fa",
 			"key": "customField",
 			"value": "",
 			"type": "string"
