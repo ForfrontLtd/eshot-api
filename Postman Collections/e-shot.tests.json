@@ -1227,7 +1227,7 @@
 	"auth": {
 		"type": "apikey",
 		"apikey": {
-			"value": "Token {{ApiKey}}",
+			"value": "Token {{apiKey}}",
 			"key": "Authorization"
 		}
 	},
@@ -1235,7 +1235,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "eff92411-5e65-4771-95a2-d1be745d20bb",
+				"id": "ed854db8-7db7-4d9b-b201-76547ebac9a7",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1245,7 +1245,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "c2092220-6601-4784-af31-51550fbb2369",
+				"id": "548ed853-c522-494b-8a0a-80f9ec25d79f",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1255,13 +1255,13 @@
 	],
 	"variable": [
 		{
-			"id": "4f4dc26a-4290-4b03-8ef8-ba090b3c31fb",
+			"id": "84f2dc9f-b5c8-4e1d-b048-2157899c8880",
 			"key": "subaccountId",
 			"value": "5",
 			"type": "string"
 		},
 		{
-			"id": "f7eaf189-23bc-4f3f-862c-8f4ec2569d2f",
+			"id": "ee9beb35-ca71-45e0-938f-9411f2294dac",
 			"key": "customField",
 			"value": "",
 			"type": "string"
