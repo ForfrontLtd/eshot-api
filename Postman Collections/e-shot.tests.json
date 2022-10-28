@@ -20,6 +20,7 @@
 							"pm.test(\"Found subaccount\", function () {\r",
 							"    var subaccounts = pm.response.json().value;\r",
 							"\tpm.expect(subaccounts.length == 1).to.be.true;\r",
+							"    console.log(subaccounts);\r",
 							"});\r",
 							"\r",
 							""
@@ -1255,19 +1256,19 @@
 	],
 	"variable": [
 		{
-			"id": "076205e3-b698-455b-bd3a-0e3732329cd3",
+			"id": "ef2bb4a4-442f-449f-b0b3-d52fb7326c9d",
 			"key": "subaccountId",
 			"value": "5",
 			"type": "string"
 		},
 		{
-			"id": "90357dc6-5e18-4757-a31b-141833fe1a11",
+			"id": "38e3c55f-f664-4bd4-8164-257726a0d28d",
 			"key": "customField",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "f574fd4a-76b4-42de-add7-e2fb66df140f",
+			"id": "85c9fe78-f166-4b10-a6b0-f2b898be0e50",
 			"key": "uniqueId",
 			"value": ""
 		}
