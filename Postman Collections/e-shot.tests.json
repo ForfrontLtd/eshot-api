@@ -524,7 +524,8 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Found contact has expected custom field value\", function() {\r",
-							"    const customField = pm.collectionVariables.get(\"customField\");\r",
+							"    const customField = pm.iterationData.get(\"customField\");\r",
+							"    console.log(customField);\r",
 							"    const uniqueId = pm.collectionVariables.get(\"uniqueId\");\r",
 							"    const contact = pm.response.json()[0];\r",
 							"    pm.expect(contact[customField] == \"postman.\" + uniqueId).to.be.true;\r",
@@ -667,7 +668,7 @@
 				"body": {
 					"mode": "file",
 					"file": {
-						"src": "data/eshot.import.example.csv"
+						"src": "/C:/temp/Postman/eshot.import.example.csv"
 					}
 				},
 				"url": "{{host}}/ContactImports/TemplatedUpload({{contactImportTemplateId}})"
@@ -1227,7 +1228,7 @@
 	"auth": {
 		"type": "apikey",
 		"apikey": {
-			"value": "Token {{ApiKey}}",
+			"value": "Token {{apiKey}}",
 			"key": "Authorization"
 		}
 	},
@@ -1235,7 +1236,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "b3d093a7-e4b1-4c57-94f8-6187957f65a4",
+				"id": "3cd4253a-2cc1-45ae-bc09-1889862eab73",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1245,7 +1246,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "5ff63ba2-a9c9-478f-93ef-4344052f7d73",
+				"id": "9c8c2508-1321-4874-9922-524a9ede93cf",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1255,13 +1256,13 @@
 	],
 	"variable": [
 		{
-			"id": "69a202f7-194e-442b-87a4-03929d148944",
+			"id": "a95dcef3-11cb-4e7e-a90a-d82b8b3e1a56",
 			"key": "subaccountId",
-			"value": "5",
+			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "2b302ed8-69d5-44e5-b1df-7ca05d031fce",
+			"id": "b689d84d-a059-418c-8d71-821ff8ffae2f",
 			"key": "customField",
 			"value": "",
 			"type": "string"
