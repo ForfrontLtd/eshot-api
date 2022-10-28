@@ -525,6 +525,7 @@
 							"\r",
 							"pm.test(\"Found contact has expected custom field value\", function() {\r",
 							"    const customField = pm.collectionVariables.get(\"customField\");\r",
+							"    console.log(customField);\r",
 							"    const uniqueId = pm.collectionVariables.get(\"uniqueId\");\r",
 							"    const contact = pm.response.json()[0];\r",
 							"    pm.expect(contact[customField] == \"postman.\" + uniqueId).to.be.true;\r",
@@ -1255,13 +1256,13 @@
 	],
 	"variable": [
 		{
-			"id": "35c7f375-14ab-493f-82cd-0986da80104e",
+			"id": "54cd9174-206e-45f2-964c-1d56ed1cf136",
 			"key": "subaccountId",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "0ae6953d-f6fc-4d5e-b178-8be4255c5826",
+			"id": "bc70296f-5dbf-4376-afba-d9573228e86f",
 			"key": "customField",
 			"value": "",
 			"type": "string"
