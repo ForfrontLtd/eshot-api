@@ -1256,16 +1256,26 @@
 	],
 	"variable": [
 		{
-			"id": "a44b89a7-8bc5-4c5c-aec8-2cccd49941e2",
+			"id": "d0082b10-e50d-46d2-bbff-5a91788becaf",
 			"key": "subaccountId",
 			"value": "5",
 			"type": "string"
 		},
 		{
-			"id": "cc634800-66fb-4c9f-9f0a-82c040fae9da",
+			"id": "46c49a10-e373-4094-b60a-ba4f72214cee",
 			"key": "customField",
 			"value": "MyCustomField",
 			"type": "string"
+		},
+		{
+			"id": "49e9d5f3-3005-4f12-8c61-c2951dcde3bc",
+			"key": "uniqueId",
+			"value": ""
+		},
+		{
+			"id": "a15c4078-8373-4207-aa2e-6273cf6d0a89",
+			"key": "contactFieldMappingId",
+			"value": ""
 		}
 	]
 }
