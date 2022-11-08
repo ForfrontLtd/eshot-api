@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "f0e63ac0-bdeb-4538-8faf-4b786cefae65",
-		"name": "e-shot-rerunnable-tests",
+		"name": "e-shot-automation-tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -1256,24 +1256,24 @@
 	],
 	"variable": [
 		{
-			"id": "54e396d2-316d-437e-9e88-5cb87466594d",
+			"id": "c1c932f6-fad7-487e-b6dc-16a9736880ec",
 			"key": "subaccountId",
 			"value": "5",
 			"type": "string"
 		},
 		{
-			"id": "18e8be98-7f9c-4c24-b597-fadb36f32f74",
+			"id": "c031f6ea-9202-4c3a-8134-852c3a148eb2",
 			"key": "customField",
 			"value": "MyCustomField",
 			"type": "string"
 		},
 		{
-			"id": "0d7d6b4d-7388-40a1-bdd5-b17822bc18fc",
+			"id": "b01c1b27-7a4a-48ff-821c-d6099a8f892c",
 			"key": "uniqueId",
 			"value": ""
 		},
 		{
-			"id": "4a61527e-f4f0-4813-82b7-e1181216b04e",
+			"id": "cb69354a-8576-4110-8a92-04e0492f2fcd",
 			"key": "contactFieldMappingId",
 			"value": ""
 		}
