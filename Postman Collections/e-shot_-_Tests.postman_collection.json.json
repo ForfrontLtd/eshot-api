@@ -1,0 +1,1271 @@
+{
+	"info": {
+		"_postman_id": "f0e63ac0-bdeb-4538-8faf-4b786cefae65",
+		"name": "e-shot - Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check subaccount exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68cf95b5-a2a7-4fb8-8f2c-39f47d2f02c6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Found subaccount\", function () {\r",
+							"    var subaccounts = pm.response.json().value;\r",
+							"\tpm.expect(subaccounts.length == 1).to.be.true;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e4035e65-12a5-45a2-a8be-4a02e250eca4",
+						"exec": [
+							"var uniqueId = new Date().getTime() * 10000;\r",
+							"pm.collectionVariables.set(\"uniqueId\", uniqueId);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "626256fe-208f-450f-8dfd-0821e5650f4d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/Subaccounts?$filter=ID eq {{subaccountId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Subaccounts"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "ID eq {{subaccountId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get custom field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var customField = pm.response.json().value;\r",
+							"\r",
+							"if (customField.length == 1) {\r",
+							"    //console.log(customField[0]);\r",
+							"    pm.collectionVariables.set(\"contactFieldMappingId\", customField[0].ID);\r",
+							"    postman.setNextRequest(\"Get subaccount custom field mapping for custom field\");\r",
+							"}\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "39481f8c-7b9f-4167-9d1a-2a740bfbac76",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/ContactFieldMappings/?$filter=DisplayName eq '{{customField}}' and ContactFieldDataTypeID eq 6",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ContactFieldMappings",
+						""
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "DisplayName eq '{{customField}}' and ContactFieldDataTypeID eq 6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create custom field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Custom field saved\", function () {\r",
+							"\tconst customfield = pm.response.json();\r",
+							"    pm.expect(customfield.id).is.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"const customfield = JSON.parse(pm.request.body.raw);\r",
+							"pm.collectionVariables.set(\"contactFieldMappingId\", pm.response.json().id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0e598ef6-f821-4339-866e-c6a3286e190b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "fc30bb89-68f1-4a2a-8545-eb62df9b8c37",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"DisplayName\":\"{{customField}}\",\r\n    \"FieldLength\": 50,\r\n    \"DecimalPlaces\": null,\r\n    \"ContactFieldDataTypeID\": 6,\r\n    \"PicklistID\": null\r\n}"
+				},
+				"url": "{{host}}/ContactFieldMappings/Create"
+			},
+			"response": []
+		},
+		{
+			"name": "Get subaccount custom field mapping for custom field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var customField = pm.response.json().value;\r",
+							"\r",
+							"if (customField.length == 1) {\r",
+							"    //console.log(customField[0]);\r",
+							"    postman.setNextRequest(\"Save Source: \\\"Postman\\\"\");\r",
+							"}\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "fec28ae6-ad4a-4a61-a16d-31c9f291d51f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/SubaccountContactFieldMappings/?$filter=SubaccountID eq {{subaccountId}} and DisplayName eq '{{customField}}'",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"SubaccountContactFieldMappings",
+						""
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "SubaccountID eq {{subaccountId}} and DisplayName eq '{{customField}}'"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create subaccount mapping for custom field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Custom field subaccount mapping applied\", function () {\r",
+							"\tconst mapping = pm.response.json();\r",
+							"    //console.log(mapping);\r",
+							"    pm.expect(mapping.id).is.greaterThan(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0e598ef6-f821-4339-866e-c6a3286e190b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c670de2a-f31a-43ea-aaf9-54f78fcbee53",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"ContactFieldMappingID\": {{contactFieldMappingId}}\r\n}"
+				},
+				"url": "{{host}}/SubaccountContactFieldMappings/Map"
+			},
+			"response": []
+		},
+		{
+			"name": "Save Source: \"Postman\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Source saved\", function () {\r",
+							"\tconst source = pm.response.json();\r",
+							"    pm.expect(source.id).is.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"const source = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"sourceId\", source.id);\r",
+							"\r",
+							"//console.log(source);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "432f1ffc-ae32-41da-8ee7-84fb4e73807d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman\"\r\n}"
+				},
+				"url": "{{host}}/Sources"
+			},
+			"response": []
+		},
+		{
+			"name": "Save Group: \"Postman (1)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Group saved\", function () {\r",
+							"\tconst group = pm.response.json();\r",
+							"    pm.expect(group.ID).is.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"const group = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"group1Id\", group.ID);\r",
+							"pm.collectionVariables.set(\"group1Name\", group.Name);\r",
+							"\r",
+							"//console.log(group);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "cbe96766-b4b7-4179-aa5e-317f5d71093c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman (1)\",\r\n    \"IsFeaturedGroup\": true\r\n}"
+				},
+				"url": "{{host}}/Groups"
+			},
+			"response": []
+		},
+		{
+			"name": "Save Group: \"Postman (2)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Group saved\", function () {\r",
+							"\tconst group = pm.response.json();\r",
+							"    pm.expect(group.ID).is.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"const group = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"group2Id\", group.ID);\r",
+							"pm.collectionVariables.set(\"group2Name\", group.Name);\r",
+							"\r",
+							"//console.log(group);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "d8c5a83c-2e32-499a-bb4c-a5594ad34b2a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubaccountID\":{{subaccountId}},\r\n    \"Name\":\"Postman (2)\",\r\n    \"IsFeaturedGroup\": true\r\n}"
+				},
+				"url": "{{host}}/Groups"
+			},
+			"response": []
+		},
+		{
+			"name": "Save contact to \"Postman (1)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8afefddd-cf68-4340-b6bd-6884d559ca28",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contact saved\", function () {\r",
+							"\tconst contact = pm.response.json();\r",
+							"    pm.expect(contact.id).is.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"const contact = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"//console.log(contact);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5e9775f1-7dea-4b14-99ab-69e6cfc694bc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "272025eb-b216-4669-a1dd-d10bd5f348c8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"SourceID\": {{sourceId}},\r\n    \"GroupIDs\": [{{group1Id}}],\r\n    \"Email\": \"postman.{{uniqueId}}@automatedtesting.forfront.net\",\r\n    \"Firstname\": \"Post\",\r\n    \"Lastname\": \"Man\",\r\n    \"CustomFields\": [\r\n        { \r\n            \"DisplayName\": \"{{customField}}\", \r\n            \"FieldValue\": \"postman.{{uniqueId}}\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": "{{host}}/Contacts"
+			},
+			"response": []
+		},
+		{
+			"name": "Get saved contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Found saved contact\", function() {\r",
+							"    const contacts = pm.response.json();\r",
+							"    pm.expect(contacts.length == 1).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Found contact has expected custom field value\", function() {\r",
+							"    const customField = pm.iterationData.get(\"customField\");\r",
+							"    console.log(customField);\r",
+							"    const uniqueId = pm.collectionVariables.get(\"uniqueId\");\r",
+							"    const contact = pm.response.json()[0];\r",
+							"    pm.expect(contact[customField] == \"postman.\" + uniqueId).to.be.true;\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "2259601e-58ee-4ba4-8e00-4f9302b2b659",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/Contacts/Export/?$filter=Email eq 'postman.{{uniqueId}}@automatedtesting.forfront.net'&$select=ID,Email,{{customField}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Contacts",
+						"Export",
+						""
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Email eq 'postman.{{uniqueId}}@automatedtesting.forfront.net'"
+						},
+						{
+							"key": "$select",
+							"value": "ID,Email,{{customField}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save contact import template",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8afefddd-cf68-4340-b6bd-6884d559ca28",
+						"exec": [
+							"pm.collectionVariables.unset(\"uniqueId\");\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contact Import Template saved\", function () {\r",
+							"\tconst template = pm.response.json();\r",
+							"    pm.expect(template.id).is.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"const template = pm.response.json();\r",
+							"pm.collectionVariables.set(\"contactImportTemplateId\", template.id);\r",
+							"//console.log(template);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c00bb1d7-4ce3-4627-845d-ece8925528ef",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"SourceID\": {{sourceId}},\r\n    \"GroupID\": {{group2Id}},\r\n    \"ImportActionType\": \"Repopulate\",\r\n    \"Name\": \"Postman\"\r\n}"
+				},
+				"url": "{{host}}/ContactImportTemplates"
+			},
+			"response": []
+		},
+		{
+			"name": "Import contacts from file using import template to \"Postman (2)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8afefddd-cf68-4340-b6bd-6884d559ca28",
+						"exec": [
+							"pm.collectionVariables.unset(\"uniqueId\");\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contact Import Template saved\", function () {\r",
+							"\tconst template = pm.response.json();\r",
+							"    //console.log(template);\r",
+							"    pm.expect(template.Token).has.length.greaterThan(0);\r",
+							"    pm.collectionVariables.set(\"importToken\", template.Token);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"importStatusRetryCheckCount\", 0);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "d005de10-676b-46ec-8ebb-5da64b4e54e7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/temp/Postman/eshot.import.example.csv"
+					}
+				},
+				"url": "{{host}}/ContactImports/TemplatedUpload({{contactImportTemplateId}})"
+			},
+			"response": []
+		},
+		{
+			"name": "Wait for file import to complete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contact import error check\", function () {\r",
+							"    const  contactImports = pm.response.json().value;\r",
+							"    pm.expect(contactImports.length == 1).to.be.true;\r",
+							"    //console.log(contactImports[0]);\r",
+							"    pm.expect(contactImports[0].ImportStatusID == 2).to.be.false;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contact import retry limit check\", function () {\r",
+							"    var counter = pm.collectionVariables.get(\"importStatusRetryCheckCount\");\r",
+							"    pm.expect(counter < 5, \"Maximum retries reached\").to.be.true;\r",
+							"});\r",
+							"\r",
+							"const contactImports = pm.response.json().value;\r",
+							"const status = contactImports[0].ImportStatusID;\r",
+							"let counter = pm.collectionVariables.get(\"importStatusRetryCheckCount\");\r",
+							"\r",
+							"if (status !== 2 && status !== 3 && counter < 5)\r",
+							"{\r",
+							"    setTimeout(function(){\r",
+							"        console.log(\"Sleeping for 3 seconds before retry\");\r",
+							"    }, 3000);\r",
+							"    pm.collectionVariables.set(\"importStatusRetryCheckCount\", counter+1);\r",
+							"    postman.setNextRequest(\"Wait for file import to complete\"); // re-run the current request\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "93d1157c-4c95-4bea-b398-4296ad2daea3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "eshot.import.example.csv"
+					}
+				},
+				"url": {
+					"raw": "{{host}}/ContactImports/?$filter=Token eq '{{importToken}}'",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ContactImports",
+						""
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Token eq '{{importToken}}'"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update all contacts in group \"Postman (1)\" to have the custom field value of \"postman test\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8afefddd-cf68-4340-b6bd-6884d559ca28",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"const contact = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"//console.log(contact);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "3a281524-f38c-4f2d-bcc9-685377be70c2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubaccountID\": {{subaccountId}},\r\n    \"CustomFields\": [\r\n        { \r\n            \"DisplayName\": \"{{customField}}\", \r\n            \"FieldValue\": \"postman test\", \r\n            \"TextOperation\": \"ReplaceContent\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": "{{host}}/Groups({{group1Id}})/Contacts/Update"
+			},
+			"response": []
+		},
+		{
+			"name": "Get contacts in group \"Postman (1)\" with \"MyCustomField\" value of \"postman test\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Found saved contacts with matching custom field value\", function() {\r",
+							"    var contacts = pm.response.json();\r",
+							"    pm.expect(contacts.length > 0).to.be.true;\r",
+							"    \r",
+							"    for (var i = 0; i < contacts.length; i++)\r",
+							"    {\r",
+							"        var contact = contacts[i];\r",
+							"        pm.expect(contact.MyCustomField == \"postman test\").to.be.true;\r",
+							"    }\r",
+							"\r",
+							"    //console.log(contacts[0]);\r",
+							"    pm.collectionVariables.set(\"contactId\", contacts[0].ID);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "55b1d92f-649a-4e0b-900c-982e48017a07",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/Contacts/Export/?$filter=MyCustomField eq 'postman test' and Groups/any(g:g/ID eq '{{group1Id}}')&$select=ID,Email,{{customField}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Contacts",
+						"Export",
+						""
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "MyCustomField eq 'postman test' and Groups/any(g:g/ID eq '{{group1Id}}')"
+						},
+						{
+							"key": "$select",
+							"value": "ID,Email,{{customField}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get contacts in group \"Postman (1)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contacts exist in group\", function () {\r",
+							"    const count = pm.response.json().length;\r",
+							"    pm.expect(count > 0).to.be.true;\r",
+							"});\r",
+							"\r",
+							"const contacts = pm.response.json();\r",
+							"\r",
+							"//console.log(\"Group \" + pm.collectionVariables.get(\"group1Name\") + \": Contact count (\" + contacts.length + \")\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "880c1c86-4387-4ab2-8427-9d453b655788",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/Contacts/Export?$filter=Groups/any(g:g/ID eq {{group1Id}})&$select=ID,Email,Firstname,Lastname,{{customField}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Contacts",
+						"Export"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Groups/any(g:g/ID eq {{group1Id}})"
+						},
+						{
+							"key": "$select",
+							"value": "ID,Email,Firstname,Lastname,{{customField}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get contacts in group \"Postman (2)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contacts exist in group\", function () {\r",
+							"    const count = pm.response.json().length;\r",
+							"    pm.expect(count > 0).to.be.true;\r",
+							"});\r",
+							"\r",
+							"const contacts = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"group2ContactCount\", contacts.length);\r",
+							"\r",
+							"//console.log(\"Group \" + pm.collectionVariables.get(\"group2Name\") + \": Contact count (\" + contacts.length + \")\");\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "9f1103e8-a688-46c4-aec1-8b63c5a99662",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/Contacts/Export?$filter=Groups/any(g:g/ID eq {{group2Id}})&$select=ID,Email,Firstname,Lastname,{{customField}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Contacts",
+						"Export"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Groups/any(g:g/ID eq {{group2Id}})"
+						},
+						{
+							"key": "$select",
+							"value": "ID,Email,Firstname,Lastname,{{customField}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add contacts only present in group: \"Postman (1)\" to \"Postman (2)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8afefddd-cf68-4340-b6bd-6884d559ca28",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "042490b8-a680-404d-89ea-799fc8c754fa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"@odata.id\":\"{{host}}/Groups({{group2Id}})\"\r\n}"
+				},
+				"url": "{{host}}/Contacts({{contactId}})/Groups/$ref"
+			},
+			"response": []
+		},
+		{
+			"name": "Check contacts in group \"Postman (2)\" has newly added member",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contact has been added to the group\", function () {\r",
+							"    const count = pm.response.json().length;\r",
+							"    const comparisonCount = pm.collectionVariables.get(\"group2ContactCount\");\r",
+							"    pm.expect(count == (comparisonCount+1)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"const contacts = pm.response.json();\r",
+							"\r",
+							"//console.log(\"Group \" + pm.collectionVariables.get(\"group2Name\") + \": Contact count (\" + contacts.length + \")\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "69073ee2-0cb6-4aa1-8bfc-30becc1beeaa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/Contacts/Export?$filter=Groups/any(g:g/ID eq {{group2Id}})&$select=ID,Email,Firstname,Lastname,{{customField}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Contacts",
+						"Export"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Groups/any(g:g/ID eq {{group2Id}})"
+						},
+						{
+							"key": "$select",
+							"value": "ID,Email,Firstname,Lastname,{{customField}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove contact from group: \"Postman (2)\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8afefddd-cf68-4340-b6bd-6884d559ca28",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "ce280ec4-5cc6-4360-a30a-389eb97dcd4e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/Contacts({{contactId}})/Groups/$ref?$id={{group2Id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Contacts({{contactId}})",
+						"Groups",
+						"$ref"
+					],
+					"query": [
+						{
+							"key": "$id",
+							"value": "{{group2Id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check contacts in group \"Postman (2)\" no longer has removed contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de527bc7-6999-455a-b1e4-d08ce769fb55",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Contact has been removed from the group\", function () {\r",
+							"    const count = pm.response.json().length;\r",
+							"    const comparisonCount = pm.collectionVariables.get(\"group2ContactCount\");\r",
+							"    pm.expect(count == comparisonCount).to.be.true;\r",
+							"});\r",
+							"\r",
+							"const contacts = pm.response.json();\r",
+							"\r",
+							"//console.log(\"Group \" + pm.collectionVariables.get(\"group2Name\") + \": Contact count (\" + contacts.length + \")\");\r",
+							"\r",
+							"pm.collectionVariables.unset(\"importStatusRetryCheckCount\");\r",
+							"pm.collectionVariables.unset(\"importToken\");\r",
+							"pm.collectionVariables.unset(\"group1Id\");\r",
+							"pm.collectionVariables.unset(\"group1Name\");\r",
+							"pm.collectionVariables.unset(\"group2Id\");\r",
+							"pm.collectionVariables.unset(\"group2Name\");\r",
+							"pm.collectionVariables.unset(\"group2ContactCount\");\r",
+							"pm.collectionVariables.unset(\"contactId\");\r",
+							"pm.collectionVariables.unset(\"contactImportTemplateId\");\r",
+							"pm.collectionVariables.unset(\"uniqueId\");\r",
+							"pm.collectionVariables.unset(\"contactFieldMappingId\");\r",
+							"pm.collectionVariables.unset(\"sourceId\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "bd9d8192-05b3-4d1b-ac9c-b3603e74b2f2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/Contacts/Export?$filter=Groups/any(g:g/ID eq {{group2Id}})&$select=ID,Email,Firstname,Lastname,{{customField}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Contacts",
+						"Export"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "Groups/any(g:g/ID eq {{group2Id}})"
+						},
+						{
+							"key": "$select",
+							"value": "ID,Email,Firstname,Lastname,{{customField}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"value": "Token {{apiKey}}",
+			"key": "Authorization"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cfb1ef99-1d64-4f72-ab46-485a03b77903",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "545564e2-8ff0-442b-979a-e7f36afdeca6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a44b89a7-8bc5-4c5c-aec8-2cccd49941e2",
+			"key": "subaccountId",
+			"value": "5",
+			"type": "string"
+		},
+		{
+			"id": "cc634800-66fb-4c9f-9f0a-82c040fae9da",
+			"key": "customField",
+			"value": "MyCustomField",
+			"type": "string"
+		}
+	]
+}
